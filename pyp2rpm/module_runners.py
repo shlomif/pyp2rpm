@@ -54,7 +54,7 @@ class SubprocessModuleRunner(ModuleRunner):
             command_list = ['PYTHONPATH=' + main_dir, interpreter, self.filename] + list(self.args)
             try:
                 proc = Popen(' '.join(command_list), stdout=PIPE, stderr=PIPE, shell=True)
-                stream_data = proc.communicate()
+                stream_data = proc.communicate(timeout=15)
             except Exception as e:
                 logger.error("Error {0} while executing extract_dist command.".format(e))
                 raise ExtractionError
