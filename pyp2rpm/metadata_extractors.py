@@ -292,14 +292,15 @@ class SetupPyMetadataExtractor(LocalMetadataExtractor):
         return self.name_convert_deps_list(deps_from_pyp_format(install_requires, runtime=True))
 
     @property
-    def build_deps(self):  # setup_requires + tests_require
+    def build_deps(self):  # setup_requires, tests_require and extras_require
         """Same as runtime_deps, but build dependencies. Test requires
         are included only if package contains test suite.
 
         Returns:
             list of build dependencies of the package
         """
-        build_requires = self.metadata['setup_requires'] + self.metadata['tests_require']
+        build_requires = list(set(self.metadata['setup_requires'] + self.metadata[
+            'tests_require'] + self.metadata['extras_require']))
         if 'setuptools' not in build_requires:
             build_requires.append('setuptools')
         return self.name_convert_deps_list(deps_from_pyp_format(

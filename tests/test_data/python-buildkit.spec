@@ -1,4 +1,4 @@
-# Created by pyp2rpm-3.1.3
+# Created by pyp2rpm-3.2.2
 %global pypi_name buildkit
 
 Name:           python-%{pypi_name}
@@ -12,6 +12,7 @@ Source0:        https://files.pythonhosted.org/packages/source/b/%{pypi_name}/%{
 BuildArch:      noarch
  
 BuildRequires:  python2-devel
+BuildRequires:  python-Sphinx = 0.6.7
 BuildRequires:  python-setuptools
 
 %description
@@ -54,5 +55,5 @@ rm -rf %{pypi_name}.egg-info
 %{python2_sitelib}/%{pypi_name}-%{version}-py?.?.egg-info
 
 %changelog
-* Thu Sep 22 2016 Michal Cyprian <mcyprian@redhat.com> - 0.2.2-1
+* Tue Mar 21 2017 Michal Cyprian <mcyprian@redhat.com> - 0.2.2-1
 - Initial package.
